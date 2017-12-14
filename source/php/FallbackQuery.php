@@ -14,13 +14,14 @@ class FallbackQuery
             return;
         }
 
-        add_action('plugins_loaded', array($this, 'getDefultLanguageCode'));
+        //Init language code
+        add_action('plugins_loaded', array($this, 'getDefultLanguageCode'), 5);
 
         //Set filterable default values
         add_action('plugins_loaded', function () {
             $this->fallbackLanguages = apply_filters('PolylangFallback/fallbackLanguages', array("en", $this->getDefultLanguageCode()));
             $this->onlyMainQuery = (bool) apply_filters('PolylangFallback/onlyMainQuery', false);
-        });
+        }, 10);
 
         //Do fallback (single post)
         add_action('pre_get_posts', array($this, 'fallbackToLanguageSingle'));
@@ -46,7 +47,6 @@ class FallbackQuery
                     remove_action('pre_get_posts', array($this, 'fallbackToLanguageSingle'));
 
                     foreach ($this->fallbackLanguages as $fallbackLanguage) {
-
                         $query->query['lang'] = (string) $fallbackLanguage;
 
                         $tempQuery = new \WP_Query((array) json_decode(json_encode($query->query), true));

@@ -1,0 +1,12 @@
+{
+    "name": "helsingborg-stad/polylang-fallback",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Thulin",
+            "email": "sebastian.thulin@helsingborg.se"
+        }
+    ],
+    "minimum-stability": "stable"
+}
