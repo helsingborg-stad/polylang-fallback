@@ -36,7 +36,7 @@ class FallbackQuery
     {
 
         //If class is set to only fallback on main query, return false if it's not this one.
-        if ($onlyMainQuery && !$query->is_main_query()) {
+        if ($this->onlyMainQuery && !$query->is_main_query()) {
             return false;
         }
 
